@@ -1,15 +1,18 @@
-/**
- * Класс Entity - базовый для взаимодействия с сервером.
- * Имеет свойство URL, равно пустой строке.
- * */
 class Entity {
+  constructor(){
+    this.URL = "";
+  }
   /**
    * Запрашивает с сервера список данных.
    * Это могут быть счета или доходы/расходы
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
-
+    data.url = this.URL;
+    data.method = "GET";
+    data.responseType = 'json';
+    data.callback = callback();
+    createRequest(data);
   }
 
   /**
@@ -18,7 +21,11 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
-
+    data.url = this.URL;
+    data.method = "PUT";
+    data.responseType = 'json';
+    data.callback = callback();
+    createRequest(data);
   }
 
   /**
@@ -26,6 +33,10 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove(data, callback ) {
-
+    data.url = this.URL;
+    data.method = "DELETE";
+    data.responseType = 'json';
+    data.callback = callback();
+    createRequest(data);
   }
 }
