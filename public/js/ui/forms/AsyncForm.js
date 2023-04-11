@@ -6,44 +6,40 @@
  * для последующей обработки
  * */
 class AsyncForm {
-  /**
-   * Если переданный элемент не существует,
-   * необходимо выкинуть ошибку.
-   * Сохраняет переданный элемент и регистрирует события
-   * через registerEvents()
-   * */
   constructor(element) {
-
+    if(!element){
+      throw new Error("no element");
+    }
+    this.element = element;
+    this.registerEvents = this.registerEvents.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+    this.submit = this.submit.bind(this)
+    this.getData = this.getData.bind(this)
+    this.registerEvents()
   }
 
-  /**
-   * Необходимо запретить отправку формы и в момент отправки
-   * вызывает метод submit()
-   * */
   registerEvents() {
-
+    this.element.addEventListener('submit', () => {
+      event.preventDefault()
+      this.submit()
+    });
   }
 
-  /**
-   * Преобразует данные формы в объект вида
-   * {
-   *  'название поля формы 1': 'значение поля формы 1',
-   *  'название поля формы 2': 'значение поля формы 2'
-   * }
-   * */
   getData() {
-
+      const inputFields = [...this.element.querySelectorAll('input')];
+      const data = {};
+      inputFields.forEach(el => {
+        data[el.name] = el.value;
+      })
+      return data;
   }
 
   onSubmit(options){
 
   }
 
-  /**
-   * Вызывает метод onSubmit и передаёт туда
-   * данные, полученные из метода getData()
-   * */
   submit() {
-
+    const data = this.getData()
+    this.onSubmit(data)
   }
 }

@@ -12,13 +12,14 @@ class Sidebar {
     this.initToggleButton();
   }
 
-  /**
-   * Отвечает за скрытие/показа боковой колонки:
-   * переключает два класса для body: sidebar-open и sidebar-collapse
-   * при нажатии на кнопку .sidebar-toggle
-   * */
   static initToggleButton() {
-
+    const toggleButton = document.querySelector(".sidebar-toggle");
+    const sidebarMini = document.querySelector(".sidebar-mini");
+    toggleButton.addEventListener('click', () =>{
+      event.preventDefault();
+      sidebarMini.classList.toggle('sidebar-open');
+      sidebarMini.classList.toggle('sidebar-collapse');
+    })
   }
 
   /**
@@ -29,6 +30,24 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-
+    const sidebarMenuItem = [...document.querySelectorAll('.menu-item')];
+    sidebarMenuItem.forEach(el => el.addEventListener('click', () => {
+      event.preventDefault();
+      if(el.className.match('login')){
+        const modalName = App.getModal('login');
+        const modalOpen = modalName.element;
+        const modal = new Modal(modalOpen);
+        modal.open();
+        return;
+      } else if(el.className.match('register')) {
+        const modalName = App.getModal('register');
+        const modalOpen = modalName.element;
+        const modal = new Modal(modalOpen);
+        modal.open();
+        return;
+      } else if(el.className.match('logout')){
+        // При нажатии на кнопку «Выйти» необходимо вызвать метод User.logout и после успешного выхода (response.success = true), нужно вызвать App.setState( 'init' )
+      }
+    }))
   }
 }
