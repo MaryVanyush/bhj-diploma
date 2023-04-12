@@ -7,27 +7,18 @@ const createRequest = (options) => {
             xhr.open(options.method, options.url);
             xhr.send();
             xhr.addEventListener('load', ( err, response ) => {
-                    options.callback(err, response);
+                options.callback(err, response);
             });
         } else {              
             let formData = new FormData()  
-            
             for (const key in options.data) {
-                formData[key] = options.data[key]
-                // formData.append(key, options.data[key])
-                console.log(formData)
+                formData.append(key, options.data[key])
             }
-            formData = JSON.stringify(formData)
-            console.log(formData)
-            xhr.setRequestHeader('Content-type', 'application/json');
             xhr.onload = () => {
                 if(xhr.status === 200){
-                    console.log(xhr)
-                    const response = JSON.parse(xhr.responseText)
-                    options.callback(xhr.response.error, xhr.response.responseText )
-                } else {
-                    console.log(xhr.status)
-                    console.log(JSON.parse(xhr.responseText))
+                    const response = xhr.response
+                    const err = xhr.onerror
+                    options.callback(err, response )
                 }
             }
             xhr.send(formData);
@@ -39,7 +30,7 @@ const createRequest = (options) => {
 
 createRequest({
     url: '/user/login',
-    method: 'POST',
+    method: 'GET',
     data: {
         email: 'demo@demo',
         password: 'demo'
