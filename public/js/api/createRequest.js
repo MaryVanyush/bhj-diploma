@@ -4,7 +4,16 @@ const createRequest = (options) => {
     xhr.responseType = 'json';
     try {
         if(options.method === "GET"){
-            xhr.open(options.method, options.url);
+            let stringFromData = '';
+            for(let key in options.data){
+                let { [Object.keys(options.data).pop()]: lastItem } = options.data;
+                if(lastItem === options.data[key]){
+                    stringFromData += key + '=' + options.data[key]
+                    break
+                }
+                stringFromData += key + '=' + options.data[key] + '&';
+            }
+            xhr.open(options.method, options.url + '?' + stringFromData);
             xhr.send();
             xhr.addEventListener('load', ( err, response ) => {
                 options.callback(err, response);
@@ -28,14 +37,14 @@ const createRequest = (options) => {
     }
 };
 
-createRequest({
-    url: '/user/login',
-    method: 'GET',
-    data: {
-        email: 'demo@demo',
-        password: 'demo'
-    },
-    callback: (e,r)=>{
-        console.log(e,r)
-    }
-})
+// createRequest({
+//     url: '/user/current',
+//     method: 'GET',
+//     data: {
+//         email: 'demo@demo',
+//         password: 'demo'
+//     },
+//     callback: (e,r)=>{
+//         console.log(e,r)
+//     }
+// })
