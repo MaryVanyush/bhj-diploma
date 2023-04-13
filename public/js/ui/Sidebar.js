@@ -46,6 +46,15 @@ class Sidebar {
         modal.open();
         return;
       } else if(el.className.match('logout')){
+        User.logout((err, response) => {  //стек переполняется !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          if(!err === null){
+            return err;
+          }
+          if(response.success === true){
+            App.setState('init');
+            return
+          }
+        })
         // При нажатии на кнопку «Выйти» необходимо вызвать метод User.logout и после успешного выхода (response.success = true), нужно вызвать App.setState( 'init' )
       }
     }))

@@ -8,8 +8,8 @@ const createRequest = (options) => {
             for(let key in options.data){
                 let { [Object.keys(options.data).pop()]: lastItem } = options.data;
                 if(lastItem === options.data[key]){
-                    stringFromData += key + '=' + options.data[key]
-                    break
+                    stringFromData += key + '=' + options.data[key];
+                    break;
                 }
                 stringFromData += key + '=' + options.data[key] + '&';
             }
@@ -18,16 +18,16 @@ const createRequest = (options) => {
             xhr.addEventListener('load', ( err, response ) => {
                 options.callback(err, response);
             });
-        } else {              
-            let formData = new FormData()  
+        } else {           
+            let formData = new FormData(); 
             for (const key in options.data) {
-                formData.append(key, options.data[key])
+                formData.append(key, options.data[key]);
             }
             xhr.onload = () => {
                 if(xhr.status === 200){
-                    const response = xhr.response
-                    const err = xhr.onerror
-                    options.callback(err, response )
+                    const response = xhr.response;
+                    const err = xhr.onerror;
+                    options.callback(err, response );
                 }
             }
             xhr.send(formData);

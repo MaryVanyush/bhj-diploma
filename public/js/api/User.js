@@ -8,7 +8,7 @@ class User {
   }
 
   static unsetCurrent() {
-    delete localStorage.user;
+    localStorage.clear();
   }
 
   static current() {
@@ -19,22 +19,25 @@ class User {
   }
 
   static fetch(callback) {
+    const user = new User();
     createRequest({
-      url: this.URL + '/current',
+      url: user.URL + '/current',
       method: "GET",
-      responseType: 'json',
       callback: (err, response) =>{
         if(!err === null){
-          return err;
+          callback(err, response);
+          return;
         }
         if(response === undefined){
-          return
+          callback(err, response);
+          return;
         }
         if(response.success === false){
           this.user.unsetCurrent();
-          return response.error;
+          callback(err, response);
+          return;
         } 
-        this.user.setCurrent(response.user);
+        User.setCurrent(response.user);
         callback(err, response);
       },
     })
@@ -47,34 +50,42 @@ class User {
    * User.setCurrent.
    * */
   static login(data, callback) {
+    const user = new User();
     createRequest({
-      url: this.URL + '/login',
+      url: user.URL + '/login',
       method: 'POST',
-      responseType: 'json',
       data,
       callback: (err, response) => {
-        if (response && response.user) {
-          this.setCurrent(response.user);
+        if(!err === null){
+          callback(err, response);
+          return err;
         }
+        if (response.success === false) {
+          callback(err, response);
+          return response.error;
+        }
+        User.setCurrent(response.user); 
         callback(err, response);
       }
     });
   }
 
   static register(data, callback) {
+    const user = new User()
     createRequest({
-      url: this.URL + '/register',
+      url: user.URL + '/register',
       method: 'POST',
-      responseType: 'json',
       data,
       callback: (err, response) =>{
         if(!err === null){
-          return err;
+          callback(err, response);
+          return;
         }
         if(response.success === false){
-          return response.error;
-        } 
-        this.user.setCurrent(data)
+          callback(err, response);
+          return;
+        }
+        User.setCurrent(data);
         callback(err, response);
       }
     })
@@ -85,19 +96,19 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout(callback) {
+    const user = new User();
     createRequest({
-      url: this.URL + '/logout',
+      url: user.URL + '/logout',
       method: 'POST',
-      responseType: 'json',
-      callback: (err, response) =>{
+      callback: callback = (err, response) =>{
         if(!err === null){
-          return err;
+          return callback(err, response);;
         }
         if(response.success === false){
-          return response.error;
-        } 
-        this.user.unsetCurrent()
-        callback(err, response);
+          return callback(err, response);;
+        }
+        User.unsetCurrent();
+        return callback(err, response);
       }
     })
   }
