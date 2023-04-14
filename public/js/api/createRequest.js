@@ -15,8 +15,9 @@ const createRequest = (options) => {
             }
             xhr.open(options.method, options.url + '?' + stringFromData);
             xhr.send();
-            xhr.addEventListener('load', ( err, response ) => {
-                options.callback(err, response);
+            xhr.addEventListener('load', (response) => {
+                response = xhr.response 
+                options.callback(response);
             });
         } else {           
             let formData = new FormData(); 
@@ -37,14 +38,3 @@ const createRequest = (options) => {
     }
 };
 
-// createRequest({
-//     url: '/user/current',
-//     method: 'GET',
-//     data: {
-//         email: 'demo@demo',
-//         password: 'demo'
-//     },
-//     callback: (e,r)=>{
-//         console.log(e,r)
-//     }
-// })

@@ -41,6 +41,12 @@
       "email": "13@3",
       "password": "w",
       "id": "6d6wr558lgf3ippd"
+    },
+    {
+      "name": "11",
+      "email": "111@1",
+      "password": "1",
+      "id": "6d6wrv8lggvq3ev"
     }
   ],
   "accounts": [
@@ -58,6 +64,34 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "11",
+      "user_id": "1",
+      "id": "6d6wr5e4lggronek"
+    },
+    {
+      "user_id": "1",
+      "id": "6d6wrctclggrs5q8"
+    },
+    {
+      "user_id": "1",
+      "id": "6d6wrbzglggrt07j"
+    },
+    {
+      "name": "14",
+      "user_id": "1",
+      "id": "6d6wr20olggs57c2"
+    },
+    {
+      "name": "6",
+      "user_id": "1",
+      "id": "6d6wr138lggs7y6b"
+    },
+    {
+      "name": "ddd",
+      "user_id": "1",
+      "id": "6d6wrb2clggu8p6w"
     }
   ],
   "transactions": [

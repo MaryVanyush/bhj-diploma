@@ -1,6 +1,8 @@
 class Entity {
   constructor(){
     this.URL = "";
+
+
   }
   /**
    * Запрашивает с сервера список данных.
@@ -8,12 +10,22 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
-    const options = {};
-    options.url = this.URL;
-    options.method = "GET";
-    options.data = data;
-    options.callback = callback();
-    createRequest(options);
+    let entity = null;
+    if(this === Account){
+      entity = new Account();
+    } else if(this === Transaction){
+      entity = new Transaction();
+    } else {
+      entity = new Entity();
+    }
+    createRequest({
+      url: entity.URL,
+      method: 'GET',
+      data,
+      callback: (response) => {
+        return callback(response);
+      }
+    });
   }
 
   /**
@@ -22,12 +34,22 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
-    const options = {};
-    options.url = this.URL;
-    options.method = "PUT";
-    options.data = data;
-    options.callback = callback();
-    createRequest(options);
+    let entity = null;
+    if(this === Account){
+      entity = new Account();
+    } else if(this === Transaction){
+      entity = new Transaction();
+    } else {
+      entity = new Entity();
+    }
+    createRequest({
+      url: entity.URL,
+      method: 'PUT',
+      data,
+      callback: (err, response) => {
+        return callback(err, response);
+      }
+    });
   }
 
   /**
@@ -35,11 +57,21 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove(data, callback ) {
-    const options = {};
-    options.url = this.URL;
-    options.method = "DELETE";
-    options.data = data;
-    options.callback = callback();
-    createRequest(options);
+    let entity = null;
+    if(this === Account){
+      entity = new Account();
+    } else if(this === Transaction){
+      entity = new Transaction();
+    } else {
+      entity = new Entity();
+    }
+    createRequest({
+      url: entity.URL,
+      method: 'DELETE',
+      data,
+      callback: (response) => {
+        return callback(response);
+      }
+    });
   }
 }

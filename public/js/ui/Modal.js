@@ -4,10 +4,10 @@ class Modal {
       throw new Error("no element");
     }
     this.element = element;
-    this.registerEvents = this.registerEvents.bind(this)
-    this.onClose = this.onClose.bind(this)
-    this.close = this.close.bind(this)
-    this.registerEvents()
+    this.registerEvents = this.registerEvents.bind(this);
+    this.onClose = this.onClose.bind(this);
+    this.close = this.close.bind(this);
+    this.registerEvents();
   }
 
   registerEvents() {
@@ -19,7 +19,7 @@ class Modal {
   }
 
   onClose(e) {
-    this.close()
+    this.close();
   }
 
   open() {

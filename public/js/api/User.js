@@ -23,22 +23,14 @@ class User {
     createRequest({
       url: user.URL + '/current',
       method: "GET",
-      callback: (err, response) =>{
-        if(!err === null){
-          callback(err, response);
-          return;
-        }
-        if(response === undefined){
-          callback(err, response);
-          return;
-        }
+      callback: (response) =>{
         if(response.success === false){
-          this.user.unsetCurrent();
-          callback(err, response);
+          User.unsetCurrent();
+          callback(response);
           return;
         } 
         User.setCurrent(response.user);
-        callback(err, response);
+        callback(response);
       },
     })
   }
@@ -71,7 +63,7 @@ class User {
   }
 
   static register(data, callback) {
-    const user = new User()
+    const user = new User();
     createRequest({
       url: user.URL + '/register',
       method: 'POST',
