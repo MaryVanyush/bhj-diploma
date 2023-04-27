@@ -5,6 +5,7 @@ const createRequest = (options) => {
     try {
         if(options.method === "GET"){
             let stringFromData = '';
+            
             for(let key in options.data){
                 let { [Object.keys(options.data).pop()]: lastItem } = options.data;
                 if(lastItem === options.data[key]){
@@ -19,7 +20,7 @@ const createRequest = (options) => {
                 response = xhr.response 
                 options.callback(response);
             });
-        } else {           
+        } else {        
             let formData = new FormData(); 
             for (const key in options.data) {
                 formData.append(key, options.data[key]);

@@ -96,6 +96,9 @@ class AccountsWidget {
   onSelectAccount( element ) {
     const accounts = [...document.querySelectorAll('.account')];
     accounts.forEach(el => el.classList.remove('active'));
+    if(!element){
+      return;
+    }
     element.classList.add('active');
     App.showPage( 'transactions', { account_id: element.dataset.id });
   }
@@ -114,9 +117,7 @@ class AccountsWidget {
     let spanName = document.createElement('span');
     spanName.append(item.name);
     let spanSum = document.createElement('span');
-    if(item.sum !== 0){
-      spanSum.append('  ' + item.sum);
-    }
+    spanSum.append(' / ' + item.sum + ' ₽');
     a.appendChild(spanName);
     li.appendChild(a).appendChild(spanSum);
     return li;

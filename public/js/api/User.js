@@ -4,6 +4,9 @@ class User {
   }
 
   static setCurrent(user) {
+    if(localStorage.user){
+      return;
+    }
     localStorage.user = JSON.stringify(user);
   }
 
@@ -92,7 +95,7 @@ class User {
     createRequest({
       url: user.URL + '/logout',
       method: 'POST',
-      callback: callback = (err, response) =>{
+      callback: (err, response) =>{
         if(!err === null){
           return callback(err, response);;
         }

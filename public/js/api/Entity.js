@@ -69,8 +69,14 @@ class Entity {
       url: entity.URL,
       method: 'DELETE',
       data,
-      callback: (response) => {
-        return callback(response);
+      callback: (err, response) =>{
+        if(!err === null){
+          return callback(err, response);;
+        }
+        if(response.success === false){
+          return callback(err, response);;
+        }
+        return callback(err, response);
       }
     });
   }

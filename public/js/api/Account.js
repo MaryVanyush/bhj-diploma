@@ -14,13 +14,13 @@ class Account extends Entity {
 
   static get(id = '', callback){
     const account = new Account();
-    const options = {
+    createRequest({
       url: account.URL,
-      method: "GET",
-      data: {
-        id: id,
-      },
-      callback: callback(),
-    };
+      method: 'GET',
+      data: {id},
+      callback: (response) => {
+        return callback(response);
+      }
+    });
   }
 }
