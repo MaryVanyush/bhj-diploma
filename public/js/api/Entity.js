@@ -1,30 +1,19 @@
 class Entity {
-  constructor(){
-    this.URL = "";
+    static URL = "";
 
 
-  }
+
   /**
    * Запрашивает с сервера список данных.
    * Это могут быть счета или доходы/расходы
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
-    let entity = null;
-    if(this === Account){
-      entity = new Account();
-    } else if(this === Transaction){
-      entity = new Transaction();
-    } else {
-      entity = new Entity();
-    }
     createRequest({
-      url: entity.URL,
+      url: this.URL,
       method: 'GET',
       data,
-      callback: (response) => {
-        return callback(response);
-      }
+      callback
     });
   }
 
@@ -34,21 +23,11 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
-    let entity = null;
-    if(this === Account){
-      entity = new Account();
-    } else if(this === Transaction){
-      entity = new Transaction();
-    } else {
-      entity = new Entity();
-    }
     createRequest({
-      url: entity.URL,
+      url: this.URL,
       method: 'PUT',
       data,
-      callback: (err, response) => {
-        return callback(err, response);
-      }
+      callback
     });
   }
 
@@ -57,27 +36,11 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove(data, callback ) {
-    let entity = null;
-    if(this === Account){
-      entity = new Account();
-    } else if(this === Transaction){
-      entity = new Transaction();
-    } else {
-      entity = new Entity();
-    }
     createRequest({
-      url: entity.URL,
+      url: this.URL,
       method: 'DELETE',
       data,
-      callback: (err, response) =>{
-        if(!err === null){
-          return callback(err, response);;
-        }
-        if(response.success === false){
-          return callback(err, response);;
-        }
-        return callback(err, response);
-      }
+      callback
     });
   }
 }
