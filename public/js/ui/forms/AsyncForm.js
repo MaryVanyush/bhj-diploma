@@ -11,10 +11,6 @@ class AsyncForm {
       throw new Error("no element");
     }
     this.element = element;
-    this.registerEvents = this.registerEvents.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-    this.submit = this.submit.bind(this)
-    this.getData = this.getData.bind(this)
     this.registerEvents()
   }
 

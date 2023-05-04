@@ -29,34 +29,27 @@ class Sidebar {
    * При нажатии на кнопку выхода вызывает User.logout и по успешному
    * выходу устанавливает App.setState( 'init' )
    * */
+
   static initAuthLinks() {
-    const sidebarMenuItem = [...document.querySelectorAll('.menu-item')];
-    sidebarMenuItem.forEach(el => el.addEventListener('click', () => {
+    const menuRegisterBtn = [...document.querySelectorAll('.menu-item_register')][0];
+    const menuLoginBtn = [...document.querySelectorAll('.menu-item_login')][0];
+    const menuLogoutBtn = [...document.querySelectorAll('.menu-item_logout')][0];
+    menuRegisterBtn.addEventListener('click', () => {
       event.preventDefault();
-      if(el.className.match('login')){
-        const modalName = App.getModal('login');
-        const modalOpen = modalName.element;
-        const modal = new Modal(modalOpen);
-        modal.open();
-        return;
-      } else if(el.className.match('register')) {
-        const modalName = App.getModal('register');
-        const modalOpen = modalName.element;
-        const modal = new Modal(modalOpen);
-        modal.open();
-        return;
-      } else if(el.className.match('logout')){
-        User.logout((err, response) => {  //стек переполняется !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          if(!err === null){
-            return err;
-          }
-          if(response.success === true){
-            App.setState('init');
-            return
-          }
-        })
-        // При нажатии на кнопку «Выйти» необходимо вызвать метод User.logout и после успешного выхода (response.success = true), нужно вызвать App.setState( 'init' )
-      }
-    }))
+      App.getModal('register').open();
+    });
+    menuLoginBtn.addEventListener('click', () => {
+      event.preventDefault();
+      App.getModal('login').open();
+    });
+    menuLogoutBtn.addEventListener('click', () => {
+      event.preventDefault();
+      User.logout((err, response) => {
+        if(!err === null){
+          return err;
+        }
+        App.setState('init');
+      })
+    });
   }
 }
