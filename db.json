@@ -47,6 +47,12 @@
       "email": "111@1",
       "password": "1",
       "id": "6d6wrv8lggvq3ev"
+    },
+    {
+      "name": "s",
+      "email": "ssd2@s",
+      "password": "123",
+      "id": "6d6wr5w4lhm0ihci"
     }
   ],
   "accounts": [
@@ -99,6 +105,11 @@
       "name": "testtest",
       "user_id": "1",
       "id": "6d6wrgglgywhuky"
+    },
+    {
+      "name": "test3",
+      "user_id": "1",
+      "id": "6d6wr4yolhm1a4qb"
     }
   ],
   "transactions": [
@@ -372,6 +383,78 @@
       "sum": 1000,
       "user_id": "1",
       "created_at": "2023-05-03T16:02:07.096Z"
+    },
+    {
+      "id": "6d6wr87olhm0w616",
+      "type": "income",
+      "name": "s",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:28:22.409Z"
+    },
+    {
+      "id": "6d6wre50lhm11jjr",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:32:33.206Z"
+    },
+    {
+      "id": "6d6wrd1wlhm12zpv",
+      "type": "income",
+      "name": "Maria",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:33:40.818Z"
+    },
+    {
+      "id": "6d6wr610lhm1460a",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:34:35.625Z"
+    },
+    {
+      "id": "6d6wr9jglhm183pj",
+      "type": "income",
+      "name": "Maria",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:37:39.270Z"
+    },
+    {
+      "id": "6d6wr6zslhm1ccky",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:40:57.393Z"
+    },
+    {
+      "id": "6d6wr3xclhm1d0ke",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:41:28.477Z"
+    },
+    {
+      "id": "6d6wrahslhm1dso3",
+      "type": "expense",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:42:04.898Z"
+    },
+    {
+      "id": "6d6wre2slhm1e82t",
+      "type": "expense",
+      "name": "Maria",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-13T13:42:24.868Z"
     }
   ]
 }

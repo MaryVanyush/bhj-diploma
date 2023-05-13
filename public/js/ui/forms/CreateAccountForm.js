@@ -16,12 +16,11 @@ class CreateAccountForm extends AsyncForm {
       if(response.success === false){
         return response.error;
       }
-      App.update();
-      const activeModal = document.querySelector('div[style$="display: block;"]');
-      const form = activeModal.querySelector('.form');
-      const modal = new Modal(activeModal);
-      form.reset();
-      modal.close();
+      if(response.success){
+        App.update();
+        this.element.reset();
+        App.getModal('createAccount').close();
+      }
     })
   }
 }

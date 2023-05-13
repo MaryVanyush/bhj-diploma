@@ -23,7 +23,7 @@ class AsyncForm {
 
   getData() {
     const inputFields = [...this.element.querySelectorAll('input')];
-    const data = {};
+    const data = new FormData();;
     inputFields.forEach(el => {
       data[el.name] = el.value;
     })

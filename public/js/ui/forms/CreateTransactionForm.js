@@ -18,12 +18,7 @@ class CreateTransactionForm extends AsyncForm {
    * Обновляет в форме всплывающего окна выпадающий список
    * */
   renderAccountsList() {
-    const currentUser = User.current();
-    if(currentUser === undefined){
-      return;
-    }
-    const data = {email: currentUser.email, password: currentUser.password};
-    Account.list(data, (response) => {
+    Account.list(User.current(), (response) => {
       if(!response){
         return;
       }
@@ -63,13 +58,12 @@ class CreateTransactionForm extends AsyncForm {
       if(response.success === false){
         return response.error;
       }
-      console.log(response)                                                                   //не добавляет новую транзакцию??????????????????
-      App.update();
-      const activeModal = document.querySelector('div[style$="display: block;"]');
-      const form = activeModal.querySelector('.form');
-      const modal = new Modal(activeModal);
-      form.reset();
-      modal.close();
+      if(response.success){
+        App.update();
+        this.element.reset();
+        App.getModal('newIncome').close();
+        App.getModal('newExpense').close();
+      }
     })
   }
 }
