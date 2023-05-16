@@ -119,7 +119,7 @@ class TransactionsPage {
       if(response.success === false){
         return response.error;
       }
-      const accountName = document.querySelector('.active').getElementsByTagName('span')[0].textContent;
+      const accountName = this.element.querySelector('.content-title').textContent
       this.renderTitle(accountName)
     })
 
