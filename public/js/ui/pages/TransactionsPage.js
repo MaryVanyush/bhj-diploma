@@ -45,15 +45,15 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-
-    // !!!!!!!!!!!!!!!!!?
-    // При нажатии на кнопку удаления транзакции .transaction__remove, необходимо вызвать метод removeTransaction и передать туда идентификатор транзакции
-
-
-    const removeAccountBtn = document.querySelector('.remove-account');
-    removeAccountBtn.addEventListener('click', () => {
-      this.removeAccount();
-    });
+    this.element.addEventListener('click', () => {
+      if(event.target.closest('.transaction__remove')){
+        const btnClose = event.target.closest('.transaction__remove');
+        this.removeTransaction(btnClose.dataset.id);
+      }
+      if(event.target.closest('.remove-account')){
+        this.removeAccount();
+      }
+    })
   }
 
   /**
@@ -98,7 +98,26 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction( id ) {
-
+    if(this.lastOptions === undefined || this.lastOptions === null){
+      return;
+    }
+    const result = confirm('Вы действительно хотите удалить эту транзакцию?')
+    if(result === false){
+      return;
+    }
+    const currentUser = User.current();
+    if(currentUser === undefined){
+      return;
+    }
+    Transaction.remove({id}, (err, response) => {
+      if(!err === null){
+        return err;
+      }
+      if(response.success === false){
+        return response.error;
+      }
+      App.update();
+    })
   }
 
   /**
@@ -119,8 +138,7 @@ class TransactionsPage {
       if(response.success === false){
         return response.error;
       }
-      const accountName = this.element.querySelector('.content-title').textContent
-      this.renderTitle(accountName)
+      this.renderTitle(response.data.name);
     })
 
     const currentUser = User.current();
@@ -165,22 +183,23 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    let newDate = new Date();
-    const arrayFromDate = (((date.split(':').join()).split('-').join()).split(' ').join()).split(',');
-    newDate.setFullYear(arrayFromDate[0], arrayFromDate[1] - 1, arrayFromDate[2]);
-    newDate.setHours(arrayFromDate[3], arrayFromDate[4], arrayFromDate[5]);
-
-    // console.log(arrayFromDate)                                            // Почему месяц +1     ?????????????????????
-
-    let formatter = new Intl.DateTimeFormat("ru", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      timezone: 'UTC',
-      hour: 'numeric',
-      minute: 'numeric'
-    });
-    return formatter.format(newDate);
+      let arrayFromDate = (date.slice(0, 19));
+      if(date.includes('T')){
+        arrayFromDate = arrayFromDate.split('T').join();
+      }
+      let newDate = new Date();
+      arrayFromDate = (((arrayFromDate.split(':').join()).split('-').join()).split(' ').join()).split(',');
+      newDate.setFullYear(arrayFromDate[0], arrayFromDate[1] - 1, arrayFromDate[2]);
+      newDate.setHours(arrayFromDate[3], arrayFromDate[4], arrayFromDate[5]);
+      let formatter = new Intl.DateTimeFormat("ru", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timezone: 'UTC',
+        hour: 'numeric',
+        minute: 'numeric'
+      });
+      return formatter.format(newDate);
   }
 
   /**

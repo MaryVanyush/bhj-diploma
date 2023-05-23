@@ -53,6 +53,12 @@
       "email": "ssd2@s",
       "password": "123",
       "id": "6d6wr5w4lhm0ihci"
+    },
+    {
+      "name": "test",
+      "email": "test@test",
+      "password": "test",
+      "id": "6d6wr128li04ytrz"
     }
   ],
   "accounts": [
@@ -72,16 +78,6 @@
       "id": "3"
     },
     {
-      "name": "11",
-      "user_id": "1",
-      "id": "6d6wr5e4lggronek"
-    },
-    {
-      "name": "14",
-      "user_id": "1",
-      "id": "6d6wr20olggs57c2"
-    },
-    {
       "name": "Maria",
       "user_id": "1",
       "id": "6d6wr1dclgkr5i6d"
@@ -97,14 +93,9 @@
       "id": "6d6wr1hslgyu7o0j"
     },
     {
-      "name": "test2",
+      "name": "11",
       "user_id": "1",
-      "id": "6d6wrci0lgyv9wsb"
-    },
-    {
-      "name": "test3",
-      "user_id": "1",
-      "id": "6d6wr4yolhm1a4qb"
+      "id": "6d6wr64sli04y2bu"
     }
   ],
   "transactions": [
@@ -490,6 +481,111 @@
       "sum": 1000,
       "user_id": "1",
       "created_at": "2023-05-16T08:17:40.215Z"
+    },
+    {
+      "id": "6d6wrb1klhzz5rau",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T07:48:37.109Z"
+    },
+    {
+      "id": "6d6wr90lhzzj3yy",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T07:59:00.057Z"
+    },
+    {
+      "id": "6d6wreyklhzzk0is",
+      "type": "income",
+      "name": "testtest",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T07:59:42.243Z"
+    },
+    {
+      "id": "6d6wrd88lhzzkkj5",
+      "type": "income",
+      "name": "testtest",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:00:08.177Z"
+    },
+    {
+      "id": "6d6wr11olhzzllrh",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:00:56.428Z"
+    },
+    {
+      "id": "6d6wr5esli005hb3",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:16:23.774Z"
+    },
+    {
+      "id": "6d6wr4jsli00en8q",
+      "type": "income",
+      "name": "testtest",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:23:31.369Z"
+    },
+    {
+      "id": "6d6wrbv0li00lmt9",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:28:57.404Z"
+    },
+    {
+      "id": "6d6wr3z0li00n09j",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:30:01.494Z"
+    },
+    {
+      "id": "6d6wrczwli00zy9w",
+      "type": "income",
+      "name": "11",
+      "sum": 100,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:40:05.443Z"
+    },
+    {
+      "id": "6d6wrct8li0124pw",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:41:47.107Z"
+    },
+    {
+      "id": "6d6wruwli012yun",
+      "type": "income",
+      "name": "test",
+      "sum": 12,
+      "user_id": "1",
+      "created_at": "2023-05-23T08:42:26.158Z"
+    },
+    {
+      "id": "6d6wrcqgli02rd25",
+      "type": "income",
+      "name": "test",
+      "sum": 1000,
+      "account_id": "6d6wr1hslgyu7o0j",
+      "user_id": "1",
+      "created_at": "2023-05-23T09:29:23.932Z"
     }
   ]
 }
